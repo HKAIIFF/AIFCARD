@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIFCARD - 創造力變現革命</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #8e44ad;
+            --accent: #00ff9d;
+            --gold: #ffd700;
+            --platinum: #e5e4e2;
+            --black: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(142, 68, 173, 0.1) 0%, transparent 20%);
+        }
+        
+        .logo-font {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.3); }
+            100% { text-shadow: 0 0 25px rgba(0, 255, 157, 0.6), 0 0 35px rgba(52, 152, 219, 0.4); }
+        }
+        
+        .logo-sub {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: -10px;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .accent-bg {
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+        }
+        
+        .card {
+            background-color: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.2);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 157, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            animation: bgPan 30s infinite linear;
+        }
+        
+        @keyframes bgPan {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-slide-right {
+            animation: slideRight 0.8s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideRight {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+            border-radius: 9999px;
+            height: 8px;
+        }
+        
+        .cyber-border {
+            position: relative;
+        }
+        
+        .cyber-border:after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, transparent 30%, var(--accent) 45%, var(--secondary) 55%, transparent 70%);
+            background-size: 200% 200%;
+            animation: borderGlow 5s linear infinite;
+            z-index: -1;
+            border-radius: 20px;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .ai-element {
+            position: absolute;
+            background-color: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 100px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
+            z-index: 0;
+            animation: dataStream 2s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background-color: rgba(26, 32, 44, 0.95);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            top: 40px;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .language-selector:hover .language-dropdown {
+            display: block;
+        }
+        
+        .language-dropdown a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-dropdown a:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+        
+        .language-dropdown img {
+            width: 24px;
+            margin-right: 10px;
+        }
+        
+        .login-dropdown {
+            display: none;
+            position: absolute;
+            background-color: rgba(26, 32, 44, 0.95);
+            min-width: 280px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            top: 50px;
+            right: 0;
+            padding: 15px;
+        }
+        
+        .login-container:hover .login-dropdown {
+            display: block;
+        }
+        
+        .login-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .login-option:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .login-option i {
+            font-size: 20px;
+            margin-right: 12px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .login-option span {
+            font-weight: 500;
+        }
+        
+        .login-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 15px 0;
+        }
+        
+        .ai-translate-toggle {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ai-translate-toggle:hover {
+            background: rgba(52, 152, 219, 0.2);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-left: 10px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .language-indicator {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .language-indicator:hover {
+            background: rgba(52, 152, 219, 0.2);
+        }
+        
+        .language-indicator img {
+            width: 24px;
+            margin-right: 8px;
+        }
+        
+        .wallet-option {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(142, 68, 173, 0.3));
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+        
+        .card-tier-classic {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(169, 169, 169, 0.3));
+            border: 1px solid rgba(192, 192, 192, 0.5);
+        }
+        
+        .card-tier-gold {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 193, 7, 0.3));
+            border: 1px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .card-tier-platinum {
+            background: linear-gradient(135deg, rgba(229, 228, 226, 0.3), rgba(192, 192, 192, 0.3));
+            border: 1px solid rgba(229, 228, 226, 0.5);
+        }
+        
+        .card-tier-black {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(64, 64, 64, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .language-selector {
+                margin-right: 10px;
+            }
+            
+            .logo-font {
+                font-size: 1.8rem;
+            }
+            
+            .hero-bg {
+                animation: none;
+            }
+            
+            .hero {
+                min-height: 70vh;
+            }
+            
+            .stats-number {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 60vh;
+            }
+            
+            .logo-font {
+                font-size: 1.5rem;
+            }
+            
+            .logo-sub {
+                font-size: 0.6rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI Elements -->
+    <div class="ai-element" style="top: 120px; left: 10%;">
+        AIFCARD_SYS: ACTIVE <br>
+        CREATOR_EVAL: PROCESSING <br>
+        // 創造力信用評估中
+    </div>
+    
+    <div class="ai-element" style="bottom: 150px; right: 15%;">
+        GLOBAL_NETWORK: ONLINE <br>
+        MERCHANTS: 100,000+ <br>
+        // 全球商戶網絡
+    </div>
+    
+    <!-- Data streams -->
+    <div class="data-stream" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="data-stream" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="data-stream" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="data-stream" style="left: 80%; animation-delay: 1.5s;"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="hkaifm-logo">
+                <div class="logo-font">AIFCARD</div>
+                <div class="logo-sub">創造力變現革命</div>
+            </a>
+            <div class="hidden md:flex space-x-8 desktop-nav">
+                <a href="#features" class="hover:text-blue-400 transition">產品特色</a>
+                <a href="#cards" class="hover:text-blue-400 transition">信用卡等級</a>
+                <a href="#ecosystem" class="hover:text-blue-400 transition">生態系統</a>
+                <a href="#partnerships" class="hover:text-blue-400 transition">合作夥伴</a>
+                <a href="#investment" class="hover:text-blue-400 transition">投資價值</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <div class="language-indicator">
+                        <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文">
+                        <span>繁中</span>
+                        <i class="fas fa-chevron-down ml-2 text-sm"></i>
+                    </div>
+                    <div class="language-dropdown">
+                        <a href="#" data-lang="zh-HK">
+                            <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文">
+                            繁體中文 (香港)
+                        </a>
+                        <a href="#" data-lang="zh-CN">
+                            <img src="https://flagcdn.com/w40/cn.png" alt="简体中文">
+                            简体中文
+                        </a>
+                        <a href="#" data-lang="en">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="English">
+                            English
+                        </a>
+                        <a href="#" data-lang="ja">
+                            <img src="https://flagcdn.com/w40/jp.png" alt="日本語">
+                            日本語
+                        </a>
+                        <a href="#" data-lang="ko">
+                            <img src="https://flagcdn.com/w40/kr.png" alt="한국어">
+                            한국어
+                        </a>
+                        <a href="#" data-lang="es">
+                            <img src="https://flagcdn.com/w40/es.png" alt="Español">
+                            Español
+                        </a>
+                        <a href="#" data-lang="fr">
+                            <img src="https://flagcdn.com/w40/fr.png" alt="Français">
+                            Français
+                        </a>
+                        <a href="#" data-lang="de">
+                            <img src="https://flagcdn.com/w40/de.png" alt="Deutsch">
+                            Deutsch
+                        </a>
+                        <a href="#" data-lang="ru">
+                            <img src="https://flagcdn.com/w40/ru.png" alt="Русский">
+                            Русский
+                        </a>
+                        <a href="#" data-lang="ar">
+                            <img src="https://flagcdn.com/w40/ae.png" alt="العربية">
+                            العربية
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- AI Translate Toggle -->
+                <div class="ai-translate-toggle hidden md:flex">
+                    <i class="fas fa-robot text-blue-400"></i>
+                    <span class="ml-2 text-sm">AI翻譯</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="aiTranslateToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <!-- Login Container -->
+                <div class="login-container relative">
+                    <a href="#login" class="btn-primary px-6 py-2 rounded-full text-sm">申請信用卡</a>
+                    <div class="login-dropdown">
+                        <h3 class="font-bold text-lg mb-4">申請AIFCARD</h3>
+                        
+                        <div class="login-option" data-login="google">
+                            <i class="fab fa-google text-red-500"></i>
+                            <span>使用 Google 註冊</span>
+                        </div>
+                        
+                        <div class="login-option" data-login="facebook">
+                            <i class="fab fa-facebook text-blue-600"></i>
+                            <span>使用 Facebook 註冊</span>
+                        </div>
+                        
+                        <div class="login-option" data-login="twitter">
+                            <i class="fab fa-twitter text-blue-400"></i>
+                            <span>使用 Twitter 註冊</span>
+                        </div>
+                        
+                        <div class="login-option" data-login="apple">
+                            <i class="fab fa-apple"></i>
+                            <span>使用 Apple 註冊</span>
+                        </div>
+                        
+                        <div class="login-divider"></div>
+                        
+                        <div class="login-option wallet-option" data-login="metamask">
+                            <i class="fas fa-wallet text-yellow-400"></i>
+                            <span>連接 MetaMask 錢包</span>
+                        </div>
+                        
+                        <div class="login-option wallet-option" data-login="walletconnect">
+                            <i class="fas fa-plug text-blue-300"></i>
+                            <span>使用 WalletConnect</span>
+                        </div>
+                        
+                        <div class="login-option wallet-option" data-login="coinbase">
+                            <i class="fab fa-bitcoin text-orange-400"></i>
+                            <span>連接 Coinbase 錢包</span>
+                        </div>
+                        
+                        <div class="mt-4 text-center text-sm text-gray-400">
+                            透過連接，您同意我們的 <a href="#" class="text-blue-400">條款</a> 和 <a href="#" class="text-blue-400">隱私政策</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="md:hidden text-white mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="mt-12 flex flex-col space-y-6">
+            <a href="#features" class="text-xl hover:text-blue-400 transition">產品特色</a>
+            <a href="#cards" class="text-xl hover:text-blue-400 transition">信用卡等級</a>
+            <a href="#ecosystem" class="text-xl hover:text-blue-400 transition">生態系統</a>
+            <a href="#partnerships" class="text-xl hover:text-blue-400 transition">合作夥伴</a>
+            <a href="#investment" class="text-xl hover:text-blue-400 transition">投資價值</a>
+            
+            <div class="pt-6 border-t border-gray-700">
+                <h3 class="text-lg font-bold mb-4">語言選擇</h3>
+                <select class="w-full bg-gray-800 text-white p-3 rounded-lg">
+                    <option value="zh-HK">繁體中文 (香港)</option>
+                    <option value="zh-CN">简体中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+                
+                <div class="flex items-center mt-4">
+                    <span class="mr-3">AI翻譯</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="mobileAiTranslate" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-gray-700">
+                <button class="btn-primary w-full py-3 rounded-lg font-medium text-center mb-4">
+                    申請信用卡
+                </button>
+                <button class="btn-secondary w-full py-3 rounded-lg font-medium text-center">
+                    連接錢包
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container mx-auto px-4 hero-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <div class="mb-6">
+                        <span class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                            全球首創 • 創造力金融革命
+                        </span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        讓您的<span class="gradient-text">創造力</span><br>
+                        成為<span class="gradient-text">信用額度</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        AIFCARD 是全球首個將 AI 創造力直接轉化為現實購買力的金融生態系統。每一次創作、每一個靈感，都能產生真實的經濟價值。
+                    </p>
+                    
+                    <!-- Key Value Props -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                            <span class="text-sm">創造力即信用額度</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-400 rounded-full mr-3"></div>
+                            <span class="text-sm">消費即挖礦獎勵</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mr-3"></div>
+                            <span class="text-sm">內容即數字資產</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-yellow-400 rounded-full mr-3"></div>
+                            <span class="text-sm">全球即本地支付</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#cards" class="btn-primary px-8 py-4 rounded-full font-medium text-center">
+                            立即申請信用卡
+                        </a>
+                        <a href="#whitepaper" class="btn-secondary px-8 py-4 rounded-full font-medium text-center">
+                            查看白皮書
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Credit Card Preview -->
+                <div class="relative animate-slide-right">
+                    <div class="relative floating">
+                        <!-- Black Card -->
+                        <div class="absolute top-0 left-8 transform rotate-12 z-30">
+                            <div class="w-80 h-48 bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 text-white shadow-2xl border border-gray-700">
+                                <div class="flex justify-between items-start mb-8">
+                                    <div>
+                                        <div class="text-sm opacity-70">AIFCARD BLACK</div>
+                                        <div class="text-lg font-bold">∞ 無限額度</div>
+                                    </div>
+                                    <div class="w-12 h-8 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded opacity-80"></div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="text-lg font-mono">•••• •••• •••• 8888</div>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <div class="text-xs opacity-70">創作者</div>
+                                        <div class="text-sm font-medium">AI CREATOR</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs opacity-70">返現率</div>
+                                        <div class="text-sm font-bold text-green-400">15%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Platinum Card -->
+                        <div class="absolute top-4 left-4 transform rotate-6 z-20">
+                            <div class="w-80 h-48 bg-gradient-to-br from-gray-300 to-gray-500 rounded-2xl p-6 text-white shadow-2xl">
+                                <div class="flex justify-between items-start mb-8">
+                                    <div>
+                                        <div class="text-sm opacity-70">AIFCARD PLATINUM</div>
+                                        <div class="text-lg font-bold">$50K - $500K</div>
+                                    </div>
+                                    <div class="w-12 h-8 bg-gradient-to-r from-blue-400 to-blue-600 rounded opacity-80"></div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="text-lg font-mono">•••• •••• •••• 6666</div>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <div class="text-xs opacity-70">創作者</div>
+                                        <div class="text-sm font-medium">AI INFLUENCER</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs opacity-70">返現率</div>
+                                        <div class="text-sm font-bold text-green-400">5%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gold Card -->
+                        <div class="absolute top-8 left-0 transform -rotate-3 z-10">
+                            <div class="w-80 h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl p-6 text-white shadow-2xl">
+                                <div class="flex justify-between items-start mb-8">
+                                    <div>
+                                        <div class="text-sm opacity-70">AIFCARD GOLD</div>
+                                        <div class="text-lg font-bold">$5K - $50K</div>
+                                    </div>
+                                    <div class="w-12 h-8 bg-gradient-to-r from-orange-400 to-orange-600 rounded opacity-80"></div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="text-lg font-mono">•••• •••• •••• 4444</div>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <div class="text-xs opacity-70">創作者</div>
+                                        <div class="text-sm font-medium">AI ARTIST</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs opacity-70">返現率</div>
+                                        <div class="text-sm font-bold text-green-400">2%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Statistics -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in">
+                <div class="text-center">
+                    <div class="stats-number counter" data-target="480">0</div>
+                    <div class="text-gray-400">萬億美元市場</div>
+                    <div class="text-sm text-gray-500">2030年創作者經濟</div>
+                </div>
+                <div class="text-center">
+                    <div class="stats-number counter" data-target="10">0</div>
+                    <div class="text-gray-400">萬+ 全球商戶</div>
+                    <div class="text-sm text-gray-500">支援AIFCARD支付</div>
+                </div>
+                <div class="text-center">
+                    <div class="stats-number counter" data-target="135">0</div>
+                    <div class="text-gray-400">個國家地區</div>
+                    <div class="text-sm text-gray-500">無縫支付體驗</div>
+                </div>
+                <div class="text-center">
+                    <div class="stats-number counter" data-target="15">0</div>
+                    <div class="text-gray-400">% 最高返現</div>
+                    <div class="text-sm text-gray-500">創作投資回報</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="py-20" id="features">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    重新定義<span class="gradient-text">創造力金融</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    AIFCARD 透過革命性的四層架構，將您的創造力直接轉化為金融資產，實現創作與消費的完美融合
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Feature 1 -->
+                <div class="card p-8 text-center animate-slide-up">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">創造力信用評估</h3>
+                    <p class="text-gray-400 mb-4">
+                        全球首創AI創作能力量化系統，將創意質量、市場影響力轉化為信用評分
+                    </p>
+                    <div class="text-sm text-blue-400">
+                        • 40% 創作質量評分<br>
+                        • 35% 市場影響力<br>
+                        • 25% 社區貢獻度
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card p-8 text-center animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">三重挖礦系統</h3>
+                    <p class="text-gray-400 mb-4">
+                        創作挖礦、消費挖礦、社交挖礦，讓每個行為都產生AIF代幣獎勵
+                    </p>
+                    <div class="text-sm text-green-400">
+                        • 優質創作即時獎勵<br>
+                        • 日常消費雙倍回饋<br>
+                        • 社區互動持續收益
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card p-8 text-center animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">全球支付網絡</h3>
+                    <p class="text-gray-400 mb-4">
+                        135個國家無縫支付，10萬+商戶合作，從咖啡店到奢侈品牌全覆蓋
+                    </p>
+                    <div class="text-sm text-purple-400">
+                        • Visa/Mastercard 支援<br>
+                        • 多鏈錢包整合<br>
+                        • 即時匯率轉換
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="card p-8 text-center animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">智能財富管理</h3>
+                    <p class="text-gray-400 mb-4">
+                        AI驅動的個人化投資建議，創作收益自動優化配置
+                    </p>
+                    <div class="text-sm text-yellow-400">
+                        • 動態風險評估<br>
+                        • 創作ROI分析<br>
+                        • 收入預測模型
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Value Proposition -->
+            <div class="card p-12 mb-16 animate-fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-6">從創作到消費的完整價值鏈</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-white font-bold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">AI創作內容生成</h4>
+                                    <p class="text-gray-400">使用各種AI工具創作圖像、視頻、音樂、文字等內容</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-white font-bold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">社區驗證與影響力評估</h4>
+                                    <p class="text-gray-400">作品通過社區驗證，AI分析影響力並計算創造力評分</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-white font-bold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">信用額度動態調整</h4>
+                                    <p class="text-gray-400">創造力評分直接影響信用卡額度，優質創作者享受更高額度</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-white font-bold text-sm">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">全球消費與獎勵回饋</h4>
+                                    <p class="text-gray-400">使用AIFCARD全球消費，獲得AIF代幣獎勵，形成正向循環</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Value Chain" class="w-full h-auto rounded-xl shadow-2xl">
+                        <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl shadow-lg">
+                            <div class="text-2xl font-bold">100%</div>
+                            <div class="text-sm">創作價值轉換</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credit Card Tiers Section -->
+    <section class="py-20 bg-gray-900" id="cards">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    四級信用卡<span class="gradient-text">體系架構</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    從新手創作者到頂級藝術家，AIFCARD 為每個階段的創作者提供專屬的金融服務
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Classic Card -->
+                <div class="card card-tier-classic p-8 animate-slide-up">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gray-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-seedling text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">CLASSIC 經典卡</h3>
+                        <div class="text-gray-300">創作新手專屬</div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">信用額度</span>
+                            <span class="font-bold">$500 - $5K</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">基礎返現</span>
+                            <span class="font-bold text-green-400">1%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">年費</span>
+                            <span class="font-bold">$99</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">AIF質押</span>
+                            <span class="font-bold">1,000 AIF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-3">特色權益</h4>
+                        <ul class="text-sm space-y-2 text-gray-300">
+                            <li>• 前6個月無息消費</li>
+                            <li>• AI導師配對服務</li>
+                            <li>• 創作工具9折優惠</li>
+                            <li>• 免費AI創作課程</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn-secondary w-full py-3 rounded-lg font-medium">
+                        立即申請
+                    </button>
+                </div>
+                
+                <!-- Gold Card -->
+                <div class="card card-tier-gold p-8 animate-slide-up transform scale-105 border-2 border-yellow-400" style="animation-delay: 0.1s;">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
+                            最受歡迎
+                        </span>
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-star text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">GOLD 金卡</h3>
+                        <div class="text-gray-300">活躍創作者首選</div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">信用額度</span>
+                            <span class="font-bold">$5K - $50K</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">分類返現</span>
+                            <span class="font-bold text-green-400">最高2%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">年費</span>
+                            <span class="font-bold">$299</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">AIF質押</span>
+                            <span class="font-bold">10,000 AIF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-3">專業權益</h4>
+                        <ul class="text-sm space-y-2 text-gray-300">
+                            <li>• 收入穩定化服務</li>
+                            <li>• 版權保護保險</li>
+                            <li>• 24/7專屬客服</li>
+                            <li>• 創作項目貸款</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn-primary w-full py-3 rounded-lg font-medium">
+                        立即申請
+                    </button>
+                </div>
+                
+                <!-- Platinum Card -->
+                <div class="card card-tier-platinum p-8 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-crown text-2xl text-gray-800"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">PLATINUM 鉑金卡</h3>
+                        <div class="text-gray-300">創意影響者專屬</div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">信用額度</span>
+                            <span class="font-bold">$50K - $500K</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">高級返現</span>
+                            <span class="font-bold text-green-400">最高5%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">年費</span>
+                            <span class="font-bold">$599</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">AIF質押</span>
+                            <span class="font-bold">100,000 AIF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-3">頂級權益</h4>
+                        <ul class="text-sm space-y-2 text-gray-300">
+                            <li>• 私人銀行服務</li>
+                            <li>• 全球機場貴賓室</li>
+                            <li>• 米其林餐廳優先訂位</li>
+                            <li>• 版權資產證券化</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn-secondary w-full py-3 rounded-lg font-medium">
+                        立即申請
+                    </button>
+                </div>
+                
+                <!-- Black Card -->
+                <div class="card card-tier-black p-8 animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-black border-2 border-white rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-infinity text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">BLACK 黑卡</h3>
+                        <div class="text-gray-300">創意產業領袖</div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">信用額度</span>
+                            <span class="font-bold">$500K - 無限</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">頂級返現</span>
+                            <span class="font-bold text-green-400">最高15%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">年費</span>
+                            <span class="font-bold">$2,999</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">AIF質押</span>
+                            <span class="font-bold">1,000,000 AIF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-3">無限權益</h4>
+                        <ul class="text-sm space-y-2 text-gray-300">
+                            <li>• 私人飛機包機服務</li>
+                            <li>• 獨角獸項目優先投資</li>
+                            <li>• 24/7全球禮賓服務</li>
+                            <li>• 藝術品投資基金</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn-primary w-full py-3 rounded-lg font-medium">
+                        邀請制申請
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Comparison Table -->
+            <div class="mt-16 card p-8 animate-fade-in">
+                <h3 class="text-2xl font-bold mb-8 text-center">詳細權益對比</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="text-left py-4 px-4">權益項目</th>
+                                <th class="text-center py-4 px-4">Classic</th>
+                                <th class="text-center py-4 px-4">Gold</th>
+                                <th class="text-center py-4 px-4">Platinum</th>
+                                <th class="text-center py-4 px-4">Black</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4">基礎返現率</td>
+                                <td class="text-center py-4 px-4">1%</td>
+                                <td class="text-center py-4 px-4">2%</td>
+                                <td class="text-center py-4 px-4">5%</td>
+                                <td class="text-center py-4 px-4">15%</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4">全球機場貴賓室</td>
+                                <td class="text-center py-4 px-4">❌</td>
+                                <td class="text-center py-4 px-4">❌</td>
+                                <td class="text-center py-4 px-4">✅</td>
+                                <td class="text-center py-4 px-4">✅</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4">創作項目貸款</td>
+                                <td class="text-center py-4 px-4">❌</td>
+                                <td class="text-center py-4 px-4">$20K</td>
+                                <td class="text-center py-4 px-4">$200K</td>
+                                <td class="text-center py-4 px-4">無限</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4">私人銀行服務</td>
+                                <td class="text-center py-4 px-4">❌</td>
+                                <td class="text-center py-4 px-4">❌</td>
+                                <td class="text-center py-4 px-4">✅</td>
+                                <td class="text-center py-4 px-4">✅ 頂級</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4">投資機會</td>
+                                <td class="text-center py-4 px-4">基礎</td>
+                                <td class="text-center py-4 px-4">創作基金</td>
+                                <td class="text-center py-4 px-4">藝術投資</td>
+                                <td class="text-center py-4 px-4">獨角獸項目</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section class="py-20" id="ecosystem">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    創造力<span class="gradient-text">變現生態系統</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    構建全球最完整的創作者經濟生態，從創作到變現的每個環節都能產生價值
+                </p>
+            </div>
+            
+            <!-- Ecosystem Flow -->
+            <div class="mb-16 animate-fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-palette text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">AI創作</h3>
+                        <p class="text-gray-400 text-sm">使用各種AI工具創作優質內容</p>
+                        <div class="mt-4 text-xs text-blue-400">
+                            圖像 • 視頻 • 音樂 • 文字
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">價值評估</h3>
+                        <p class="text-gray-400 text-sm">AI分析創作質量與市場影響力</p>
+                        <div class="mt-4 text-xs text-purple-400">
+                            質量分析 • 影響力評估 • 社區反饋
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-credit-card text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">信用轉換</h3>
+                        <p class="text-gray-400 text-sm">創造力直接轉化為信用額度</p>
+                        <div class="mt-4 text-xs text-green-400">
+                            動態額度 • 即時更新 • 個人化優化
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-globe text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">全球消費</h3>
+                        <p class="text-gray-400 text-sm">在全球任何地方使用創造力購買力</p>
+                        <div class="mt-4 text-xs text-yellow-400">
+                            135國家 • 10萬商戶 • 即時回饋
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flow Arrows -->
+                <div class="hidden md:flex justify-between items-center mt-8 px-16">
+                    <i class="fas fa-arrow-right text-2xl text-gray-600"></i>
+                    <i class="fas fa-arrow-right text-2xl text-gray-600"></i>
+                    <i class="fas fa-arrow-right text-2xl text-gray-600"></i>
+                </div>
+            </div>
+            
+            <!-- Three Mining Systems -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Creation Mining -->
+                <div class="card p-8 animate-slide-up">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-pickaxe text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">創作挖礦</h3>
+                    <p class="text-gray-400 mb-6 text-center">
+                        每一個優質創作都能獲得AIF代幣獎勵，創作質量越高，獎勵越豐厚
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">優質作品</span>
+                            <span class="text-green-400 font-bold">10-100 AIF</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">病毒式傳播</span>
+                            <span class="text-green-400 font-bold">100-1000 AIF</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">商業合作</span>
+                            <span class="text-green-400 font-bold">1000+ AIF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Consumption Mining -->
+                <div class="card p-8 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">消費挖礦</h3>
+                    <p class="text-gray-400 mb-6 text-center">
+                        使用AIFCARD消費時獲得雙重獎勵，消費行為為生態系統貢獻價值
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">日常消費</span>
+                            <span class="text-blue-400 font-bold">1% AIF返還</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">創作工具</span>
+                            <span class="text-blue-400 font-bold">2% AIF返還</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">藝術投資</span>
+                            <span class="text-blue-400 font-bold">5% AIF返還</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Mining -->
+                <div class="card p-8 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-users text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">社交挖礦</h3>
+                    <p class="text-gray-400 mb-6 text-center">
+                        積極參與社區互動，分享經驗，幫助新手，都能獲得持續的AIF獎勵
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">點讚評論</span>
+                            <span class="text-yellow-400 font-bold">1-5 AIF</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">分享教程</span>
+                            <span class="text-yellow-400 font-bold">10-50 AIF</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                            <span class="text-sm">社區建設</span>
+                            <span class="text-yellow-400 font-bold">50-200 AIF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Platform Integration -->
+            <div class="card p-12 animate-fade-in">
+                <h3 class="text-3xl font-bold mb-8 text-center">跨平台價值聚合</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-red-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fab fa-youtube text-2xl text-white"></i>
+                        </div>
+                        <div class="font-bold">YouTube</div>
+                        <div class="text-xs text-gray-400">視頻創作收益</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fab fa-instagram text-2xl text-white"></i>
+                        </div>
+                        <div class="font-bold">Instagram</div>
+                        <div class="text-xs text-gray-400">圖像影響力</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-black rounded-2xl mx-auto mb-4 flex items-center justify-center border border-gray-600">
+                            <i class="fab fa-tiktok text-2xl text-white"></i>
+                        </div>
+                        <div class="font-bold">TikTok</div>
+                        <div class="text-xs text-gray-400">短視頻病毒傳播</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fab fa-twitter text-2xl text-white"></i>
+                        </div>
+                        <div class="font-bold">Twitter/X</div>
+                        <div class="text-xs text-gray-400">社交影響力</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fab fa-discord text-2xl text-white"></i>
+                        </div>
+                        <div class="font-bold">Discord</div>
+                        <div class="text-xs text-gray-400">社區建設</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gray-800 rounded-2xl mx-auto mb-4 flex items-center justify-center border border-gray-600">
+                            <i class="fas fa-cube text-2xl text-white"></i>
+                        </div>
+                        <div class="font-bold">NFT平台</div>
+                        <div class="text-xs text-gray-400">數字資產交易</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Partnerships Section -->
+    <section class="py-20 bg-gray-900" id="partnerships">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    全球<span class="gradient-text">合作夥伴網絡</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    與全球10萬+商戶建立合作關係，覆蓋135個國家，從日常消費到奢侈體驗
+                </p>
+            </div>
+            
+            <!-- Partnership Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Daily Essentials -->
+                <div class="card p-8 animate-slide-up">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-shopping-basket text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">日常必需</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span>Starbucks</span>
+                            <span class="text-green-400">2% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>McDonald's</span>
+                            <span class="text-green-400">1% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>7-Eleven</span>
+                            <span class="text-green-400">1% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Uber/Lyft</span>
+                            <span class="text-green-400">2% 返現</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <span class="text-xs text-gray-400">38,000+ 全球門店</span>
+                    </div>
+                </div>
+                
+                <!-- Creative Tools -->
+                <div class="card p-8 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-tools text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">創作工具</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span>Adobe CC</span>
+                            <span class="text-blue-400">20% 返還</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>NVIDIA GPU</span>
+                            <span class="text-blue-400">15% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Apple Store</span>
+                            <span class="text-blue-400">10% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Figma Pro</span>
+                            <span class="text-blue-400">免費升級</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <span class="text-xs text-gray-400">專業版免費升級</span>
+                    </div>
+                </div>
+                
+                <!-- Luxury Brands -->
+                <div class="card p-8 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-gem text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">奢侈品牌</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span>Louis Vuitton</span>
+                            <span class="text-purple-400">8% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Hermès</span>
+                            <span class="text-purple-400">VIP待遇</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Rolex</span>
+                            <span class="text-purple-400">優先購買</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tesla</span>
+                            <span class="text-purple-400">12% 返現</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <span class="text-xs text-gray-400">限量版優先購買權</span>
+                    </div>
+                </div>
+                
+                <!-- Entertainment -->
+                <div class="card p-8 animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-film text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">娛樂文化</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span>AMC電影院</span>
+                            <span class="text-yellow-400">5% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Spotify</span>
+                            <span class="text-yellow-400">AI音樂工具</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Steam</span>
+                            <span class="text-yellow-400">10% 返現</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Netflix</span>
+                            <span class="text-yellow-400">創作者優惠</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <span class="text-xs text-gray-400">首映禮邀請</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Global Coverage Map -->
+            <div class="card p-12 mb-16 animate-fade-in">
+                <h3 class="text-3xl font-bold mb-8 text-center">全球覆蓋網絡</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">135</div>
+                        <div class="text-gray-400">個國家地區</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-400 mb-2">100,000+</div>
+                        <div class="text-gray-400">合作商戶</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-400 mb-2">24/7</div>
+                        <div class="text-gray-400">全球客服</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-yellow-400 mb-2">50+</div>
+                        <div class="text-gray-400">主要貨幣</div>
+                    </div>
+                </div>
+                
+                <!-- Regional Highlights -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center">
+                            <i class="fas fa-yen-sign text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">亞太地區</h4>
+                        <p class="text-gray-400 text-sm">深耕日韓動漫文化，東南亞創作者扶持計劃</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                            <i class="fas fa-euro-sign text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">歐美市場</h4>
+                        <p class="text-gray-400 text-sm">好萊塢合作，矽谷技術生態，藝術傳統融合</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center">
+                            <i class="fas fa-globe-africa text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">新興市場</h4>
+                        <p class="text-gray-400 text-sm">拉美中東非洲，本土創作者培育，文化多元化</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Value Section -->
+    <section class="py-20" id="investment">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    投資價值與<span class="gradient-text">未來願景</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    把握萬億美元創作者經濟的歷史性機遇，成為創造力金融革命的先行者
+                </p>
+            </div>
+            
+            <!-- Market Opportunity -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <div class="animate-slide-up">
+                    <h3 class="text-3xl font-bold mb-6">萬億美元市場機遇</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
+                            <div>
+                                <div class="font-bold text-lg">2024年市場規模</div>
+                                <div class="text-gray-400">當前創作者經濟規模</div>
+                            </div>
+                            <div class="text-2xl font-bold text-blue-400">$1,040億</div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
+                            <div>
+                                <div class="font-bold text-lg">2030年預測規模</div>
+                                <div class="text-gray-400">年複合增長率28.4%</div>
+                            </div>
+                            <div class="text-2xl font-bold text-green-400">$4,800億</div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg">
+                            <div>
+                                <div class="font-bold text-lg">AIFCARD目標份額</div>
+                                <div class="text-gray-200">保守估計10%市場佔有率</div>
+                            </div>
+                            <div class="text-2xl font-bold text-yellow-400">$480億</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-xl font-bold mb-4">AI創作革命驅動因素</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-800 rounded-lg">
+                                <div class="text-2xl font-bold text-blue-400 mb-2">85%</div>
+                                <div class="text-sm text-gray-400">2030年AI工具普及率</div>
+                            </div>
+                            <div class="p-4 bg-gray-800 rounded-lg">
+                                <div class="text-2xl font-bold text-green-400 mb-2">2.5億</div>
+                                <div class="text-sm text-gray-400">2030年創作者數量</div>
+                            </div>
+                            <div class="p-4 bg-gray-800 rounded-lg">
+                                <div class="text-2xl font-bold text-purple-400 mb-2">300%</div>
+                                <div class="text-sm text-gray-400">AI輔助效率提升</div>
+                            </div>
+                            <div class="p-4 bg-gray-800 rounded-lg">
+                                <div class="text-2xl font-bold text-yellow-400 mb-2">35%</div>
+                                <div class="text-sm text-gray-400">年收入增長率</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-slide-up" style="animation-delay: 0.1s;">
+                    <h3 class="text-3xl font-bold mb-6">投資回報預測</h3>
+                    
+                    <!-- Investment Scenarios -->
+                    <div class="space-y-6">
+                        <div class="card p-6 border-2 border-green-500">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-xl font-bold text-green-400">保守情景</h4>
+                                <span class="text-sm text-gray-400">概率 60%</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-2xl font-bold">800-1200%</div>
+                                    <div class="text-sm text-gray-400">5年投資回報率</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold">3-5%</div>
+                                    <div class="text-sm text-gray-400">市場佔有率</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6 border-2 border-blue-500">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-xl font-bold text-blue-400">樂觀情景</h4>
+                                <span class="text-sm text-gray-400">概率 30%</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-2xl font-bold">2000-3000%</div>
+                                    <div class="text-sm text-gray-400">5年投資回報率</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold">8-12%</div>
+                                    <div class="text-sm text-gray-400">市場佔有率</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6 border-2 border-purple-500">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-xl font-bold text-purple-400">超級情景</h4>
+                                <span class="text-sm text-gray-400">概率 10%</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-2xl font-bold">5000%+</div>
+                                    <div class="text-sm text-gray-400">5年投資回報率</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold">15%+</div>
+                                    <div class="text-sm text-gray-400">市場佔有率</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg">
+                        <h4 class="text-lg font-bold mb-4">5年財務預測</h4>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-green-400">$58億</div>
+                                <div class="text-sm text-gray-400">預計年收入</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-blue-400">250萬</div>
+                                <div class="text-sm text-gray-400">目標用戶數</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-purple-400">35%</div>
+                                <div class="text-sm text-gray-400">淨利潤率</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Competitive Advantages -->
+            <div class="mb-16 animate-fade-in">
+                <h3 class="text-3xl font-bold mb-8 text-center">競爭優勢與護城河</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-robot text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3">技術護城河</h4>
+                        <p class="text-gray-400 text-sm">
+                            全球首創AI創作能力信用評估系統，多鏈兼容的統一支付網絡
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-network-wired text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3">網絡效應</h4>
+                        <p class="text-gray-400 text-sm">
+                            創作者數量增長帶來平台價值指數級提升，社區互動產生持續價值
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-database text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3">數據護城河</h4>
+                        <p class="text-gray-400 text-sm">
+                            獨特的創作者行為數據，消費與創作能力關聯分析，個人化金融產品基礎
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-handshake text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-3">生態護城河</h4>
+                        <p class="text-gray-400 text-sm">
+                            10萬+全球商戶網絡，金融機構戰略聯盟，科技平台深度整合
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Future Vision Timeline -->
+            <div class="card p-12 animate-fade-in">
+                <h3 class="text-3xl font-bold mb-8 text-center">2030未來願景</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-users text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4">500萬+</h4>
+                        <p class="text-gray-400">全球創作者用戶</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-dollar-sign text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4">$1000億+</h4>
+                        <p class="text-gray-400">年度交易規模</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-globe text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4">100+</h4>
+                        <p class="text-gray-400">覆蓋國家地區</p>
+                    </div>
+                </div>
+                
+                <!-- Three Phase Strategy -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-gray-800 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4 text-blue-400">第一階段 (2025-2030)</h4>
+                        <h5 class="font-bold mb-3">建立全球領先地位</h5>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li>• 完成全球主要市場佈局</li>
+                            <li>• 建立行業標準和最佳實踐</li>
+                            <li>• 實現盈利和可持續發展</li>
+                            <li>• 準備公開上市或戰略併購</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-6 bg-gray-800 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4 text-green-400">第二階段 (2030-2035)</h4>
+                        <h5 class="font-bold mb-3">引領行業變革</h5>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li>• 推動創作者經濟立法和監管</li>
+                            <li>• 建立全球創作者權益保護體系</li>
+                            <li>• 開發下一代金融科技產品</li>
+                            <li>• 拓展到更廣泛的創意產業</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-6 bg-gray-800 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4 text-purple-400">第三階段 (2035-2040)</h4>
+                        <h5 class="font-bold mb-3">構建未來金融生態</h5>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li>• 實現完全去中心化創作者金融系統</li>
+                            <li>• 建立全球統一創作者身份信用體系</li>
+                            <li>• 推動AI與人類創作和諧發展</li>
+                            <li>• 成為數字經濟時代金融基礎設施</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-900 via-purple-900 to-blue-900">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    加入創造力金融<span class="gradient-text">革命</span>
+                </h2>
+                <p class="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    我們站在歷史性的拐點上。就像互聯網重新定義了信息傳播，AI正在重塑整個創作產業。
+                    AIFCARD將成為連接AI創作經濟與傳統金融體系的橋樑。
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center">
+                        <div class="text-3xl mb-4">🎨</div>
+                        <h3 class="text-xl font-bold mb-2">致創作者</h3>
+                        <p class="text-gray-300">您的才華就是您的信用，讓創造力為您的生活買單</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-4">💼</div>
+                        <h3 class="text-xl font-bold mb-2">致投資者</h3>
+                        <p class="text-gray-300">把握萬億美元市場的歷史性機遇，參與塑造未來金融格局</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-4">🤝</div>
+                        <h3 class="text-xl font-bold mb-2">致合作夥伴</h3>
+                        <p class="text-gray-300">共建創作者友好的商業環境，用創新改變世界</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center mb-8">
+                    <a href="#apply" class="btn-primary px-10 py-4 rounded-full text-lg font-medium">
+                        立即申請AIFCARD
+                    </a>
+                    <a href="#whitepaper" class="btn-secondary px-10 py-4 rounded-full text-lg font-medium">
+                        下載完整白皮書
+                    </a>
+                    <a href="#contact" class="btn-secondary px-10 py-4 rounded-full text-lg font-medium">
+                        聯繫投資團隊
+                    </a>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-gray-400 mb-4">讓我們共同見證創造力成為世界通用貨幣的歷史時刻</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-2xl">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-2xl">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 text-2xl">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-12 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="hkaifm-logo mb-4">
+                        <div class="logo-font">AIFCARD</div>
+                        <div class="logo-sub">創造力變現革命</div>
+                    </a>
+                    <p class="text-gray-400 mb-4">
+                        全球首個將AI創造力直接轉化為現實購買力的金融生態系統。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-medium"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">產品服務</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#cards" class="text-gray-400 hover:text-blue-400">信用卡等級</a></li>
+                        <li><a href="#ecosystem" class="text-gray-400 hover:text-blue-400">生態系統</a></li>
+                        <li><a href="#partnerships" class="text-gray-400 hover:text-blue-400">合作夥伴</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-blue-400">產品特色</a></li>
+                        <li><a href="#apply" class="text-gray-400 hover:text-blue-400">申請信用卡</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">資源中心</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#whitepaper" class="text-gray-400 hover:text-blue-400">白皮書</a></li>
+                        <li><a href="#documentation" class="text-gray-400 hover:text-blue-400">技術文檔</a></li>
+                        <li><a href="#tokenomics" class="text-gray-400 hover:text-blue-400">代幣經濟</a></li>
+                        <li><a href="#developers" class="text-gray-400 hover:text-blue-400">開發者</a></li>
+                        <li><a href="#support" class="text-gray-400 hover:text-blue-400">客戶支援</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">聯繫我們</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#terms" class="text-gray-400 hover:text-blue-400">使用條款</a></li>
+                        <li><a href="#privacy" class="text-gray-400 hover:text-blue-400">隱私政策</a></li>
+                        <li><a href="#compliance" class="text-gray-400 hover:text-blue-400">監管合規</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-400">聯繫我們</a></li>
+                        <li class="text-gray-400">
+                            <div class="text-sm">官方網站：aif.cards</div>
+                            <div class="text-sm">聯絡郵箱：contact@aif.cards</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 AIFCARD. 版權所有 | 總部：中國香港特別行政區</p>
+                <p class="mt-2">本白皮書包含前瞻性陳述，實際結果可能與預測存在差異。投資有風險，請謹慎投資。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add random data streams
+        function createDataStreams() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const stream = document.createElement('div');
+                    stream.className = 'data-stream';
+                    stream.style.left = Math.random() * 100 + '%';
+                    stream.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(stream);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        stream.remove();
+                    }, 4000);
+                }, i * 3000);
+            }
+        }
+        
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start data streams
+            createDataStreams();
+            setInterval(createDataStreams, 15000);
+            
+            // Add scroll animations
+            const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        if (entry.target.classList.contains('animate-slide-up')) {
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                        if (entry.target.classList.contains('animate-slide-right')) {
+                            entry.target.style.transform = 'translateX(0)';
+                        }
+                        if (entry.target.classList.contains('animate-fade-in')) {
+                            entry.target.style.transform = 'scale(1)';
+                        }
+                        
+                        // Animate counters when they come into view
+                        const counters = entry.target.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            if (!counter.classList.contains('animated')) {
+                                counter.classList.add('animated');
+                                animateCounter(counter);
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                if (el.classList.contains('animate-slide-up')) {
+                    el.style.transform = 'translateY(50px)';
+                }
+                if (el.classList.contains('animate-slide-right')) {
+                    el.style.transform = 'translateX(-50px)';
+                }
+                if (el.classList.contains('animate-fade-in')) {
+                    el.style.transform = 'scale(0.95)';
+                }
+                observer.observe(el);
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Language selection
+            const languageLinks = document.querySelectorAll('.language-dropdown a');
+            const languageIndicator = document.querySelector('.language-indicator');
+            
+            languageLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = link.getAttribute('data-lang');
+                    const flag = link.querySelector('img').src;
+                    const text = link.textContent.trim();
+                    
+                    // Update language indicator
+                    languageIndicator.innerHTML = `
+                        <img src="${flag}" alt="${text}">
+                        <span>${lang === 'zh-HK' ? '繁中' : lang === 'zh-CN' ? '简中' : lang.toUpperCase()}</span>
+                        <i class="fas fa-chevron-down ml-2 text-sm"></i>
+                    `;
+                    
+                    // Show translation message
+                    const translateToggle = document.getElementById('aiTranslateToggle');
+                    if (translateToggle && translateToggle.checked) {
+                        alert(`正在使用AI翻譯至${text}...`);
+                    }
+                });
+            });
+            
+            // Login option handlers
+            const loginOptions = document.querySelectorAll('.login-option');
+            
+            loginOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const loginType = option.getAttribute('data-login');
+                    
+                    if (loginType === 'metamask' || loginType === 'walletconnect' || loginType === 'coinbase') {
+                        alert(`正在連接${loginType.charAt(0).toUpperCase() + loginType.slice(1)}錢包...`);
+                    } else {
+                        alert(`正在使用${loginType.charAt(0).toUpperCase() + loginType.slice(1)}登錄...`);
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
