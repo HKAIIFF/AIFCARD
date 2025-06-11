@@ -94,6 +94,7 @@
             background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            padding: 12px 0;
         }
         
         .btn-primary {
@@ -457,6 +458,7 @@
             padding: 20px;
             transform: translateX(100%);
             transition: transform 0.3s ease;
+            overflow-y: auto;
         }
         
         .mobile-menu.open {
@@ -543,6 +545,65 @@
             border-radius: 4px;
         }
         
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Mobile card carousel */
+        .mobile-card-carousel {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .card-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-slide.active {
+            opacity: 1;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        
+        .carousel-indicator.active {
+            background-color: var(--accent);
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .desktop-nav {
@@ -567,10 +628,82 @@
             
             .hero {
                 min-height: 70vh;
+                padding-top: 70px;
             }
             
             .stats-number {
                 font-size: 2rem;
+            }
+            
+            .hero-content .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .floating {
+                display: none;
+            }
+            
+            .mobile-card-carousel {
+                display: block;
+                margin-top: 30px;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .card {
+                margin-bottom: 20px;
+            }
+            
+            .login-container .btn-primary {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .ai-translate-toggle {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .language-indicator span {
+                display: none;
+            }
+            
+            .language-indicator img {
+                margin-right: 0;
+            }
+            
+            .language-dropdown {
+                min-width: 120px;
+            }
+            
+            .language-dropdown a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .ai-element {
+                display: none;
+            }
+            
+            .data-stream {
+                display: none;
+            }
+            
+            .card:hover {
+                transform: none;
             }
         }
         
@@ -590,6 +723,45 @@
             .stats-number {
                 font-size: 1.5rem;
             }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-card-carousel {
+                height: 200px;
+            }
+            
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .flex-col.sm\:flex-row {
+                flex-direction: column;
+            }
+            
+            .flex-col.sm\:flex-row .space-y-4 {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Mobile table scroll */
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        /* Mobile menu scroll */
+        .mobile-menu-content {
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -614,7 +786,7 @@
     <div class="data-stream" style="left: 80%; animation-delay: 1.5s;"></div>
 
     <!-- Navigation -->
-    <nav class="navbar fixed w-full z-50 px-4 py-3">
+    <nav class="navbar fixed w-full z-50 px-4">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="hkaifm-logo">
                 <div class="logo-font">AIFCARD</div>
@@ -629,7 +801,7 @@
             </div>
             <div class="flex items-center space-x-4">
                 <!-- Language Selector -->
-                <div class="language-selector">
+                <div class="language-selector hidden md:block">
                     <div class="language-indicator">
                         <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文">
                         <span>繁中</span>
@@ -690,7 +862,7 @@
                 </div>
                 
                 <!-- Login Container -->
-                <div class="login-container relative">
+                <div class="login-container relative hidden md:block">
                     <a href="#login" class="btn-primary px-6 py-2 rounded-full text-sm">申請信用卡</a>
                     <div class="login-dropdown">
                         <h3 class="font-bold text-lg mb-4">申請AIFCARD</h3>
@@ -738,7 +910,7 @@
                     </div>
                 </div>
                 
-                <button class="md:hidden text-white mobile-menu-btn">
+                <button class="mobile-menu-btn">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -751,44 +923,46 @@
             <i class="fas fa-times"></i>
         </div>
         
-        <div class="mt-12 flex flex-col space-y-6">
-            <a href="#features" class="text-xl hover:text-blue-400 transition">產品特色</a>
-            <a href="#cards" class="text-xl hover:text-blue-400 transition">信用卡等級</a>
-            <a href="#ecosystem" class="text-xl hover:text-blue-400 transition">生態系統</a>
-            <a href="#partnerships" class="text-xl hover:text-blue-400 transition">合作夥伴</a>
-            <a href="#investment" class="text-xl hover:text-blue-400 transition">投資價值</a>
-            
-            <div class="pt-6 border-t border-gray-700">
-                <h3 class="text-lg font-bold mb-4">語言選擇</h3>
-                <select class="w-full bg-gray-800 text-white p-3 rounded-lg">
-                    <option value="zh-HK">繁體中文 (香港)</option>
-                    <option value="zh-CN">简体中文</option>
-                    <option value="en">English</option>
-                    <option value="ja">日本語</option>
-                    <option value="ko">한국어</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                    <option value="ru">Русский</option>
-                    <option value="ar">العربية</option>
-                </select>
+        <div class="mt-12 mobile-menu-content">
+            <div class="flex flex-col space-y-6">
+                <a href="#features" class="text-xl hover:text-blue-400 transition py-2">產品特色</a>
+                <a href="#cards" class="text-xl hover:text-blue-400 transition py-2">信用卡等級</a>
+                <a href="#ecosystem" class="text-xl hover:text-blue-400 transition py-2">生態系統</a>
+                <a href="#partnerships" class="text-xl hover:text-blue-400 transition py-2">合作夥伴</a>
+                <a href="#investment" class="text-xl hover:text-blue-400 transition py-2">投資價值</a>
                 
-                <div class="flex items-center mt-4">
-                    <span class="mr-3">AI翻譯</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="mobileAiTranslate" checked>
-                        <span class="slider"></span>
-                    </label>
+                <div class="pt-6 border-t border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">語言選擇</h3>
+                    <select class="w-full bg-gray-800 text-white p-3 rounded-lg">
+                        <option value="zh-HK">繁體中文 (香港)</option>
+                        <option value="zh-CN">简体中文</option>
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ru">Русский</option>
+                        <option value="ar">العربية</option>
+                    </select>
+                    
+                    <div class="flex items-center mt-4">
+                        <span class="mr-3">AI翻譯</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="mobileAiTranslate" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="pt-6 border-t border-gray-700">
-                <button class="btn-primary w-full py-3 rounded-lg font-medium text-center mb-4">
-                    申請信用卡
-                </button>
-                <button class="btn-secondary w-full py-3 rounded-lg font-medium text-center">
-                    連接錢包
-                </button>
+                
+                <div class="pt-6 border-t border-gray-700">
+                    <button class="btn-primary w-full py-3 rounded-lg font-medium text-center mb-4">
+                        申請信用卡
+                    </button>
+                    <button class="btn-secondary w-full py-3 rounded-lg font-medium text-center">
+                        連接錢包
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -842,8 +1016,8 @@
                     </div>
                 </div>
                 
-                <!-- Credit Card Preview -->
-                <div class="relative animate-slide-right">
+                <!-- Credit Card Preview - Desktop -->
+                <div class="relative animate-slide-right hidden md:block">
                     <div class="relative floating">
                         <!-- Black Card -->
                         <div class="absolute top-0 left-8 transform rotate-12 z-30">
@@ -926,8 +1100,95 @@
                 </div>
             </div>
             
+            <!-- Credit Card Preview - Mobile Carousel -->
+            <div class="mobile-card-carousel">
+                <!-- Black Card -->
+                <div class="card-slide active">
+                    <div class="w-72 h-44 bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 text-white shadow-2xl border border-gray-700">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <div class="text-sm opacity-70">AIFCARD BLACK</div>
+                                <div class="text-lg font-bold">∞ 無限額度</div>
+                            </div>
+                            <div class="w-10 h-7 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded opacity-80"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="text-md font-mono">•••• •••• •••• 8888</div>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <div class="text-xs opacity-70">創作者</div>
+                                <div class="text-sm font-medium">AI CREATOR</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs opacity-70">返現率</div>
+                                <div class="text-sm font-bold text-green-400">15%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Platinum Card -->
+                <div class="card-slide">
+                    <div class="w-72 h-44 bg-gradient-to-br from-gray-300 to-gray-500 rounded-2xl p-6 text-white shadow-2xl">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <div class="text-sm opacity-70">AIFCARD PLATINUM</div>
+                                <div class="text-lg font-bold">$50K - $500K</div>
+                            </div>
+                            <div class="w-10 h-7 bg-gradient-to-r from-blue-400 to-blue-600 rounded opacity-80"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="text-md font-mono">•••• •••• •••• 6666</div>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <div class="text-xs opacity-70">創作者</div>
+                                <div class="text-sm font-medium">AI INFLUENCER</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs opacity-70">返現率</div>
+                                <div class="text-sm font-bold text-green-400">5%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gold Card -->
+                <div class="card-slide">
+                    <div class="w-72 h-44 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl p-6 text-white shadow-2xl">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <div class="text-sm opacity-70">AIFCARD GOLD</div>
+                                <div class="text-lg font-bold">$5K - $50K</div>
+                            </div>
+                            <div class="w-10 h-7 bg-gradient-to-r from-orange-400 to-orange-600 rounded opacity-80"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="text-md font-mono">•••• •••• •••• 4444</div>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <div class="text-xs opacity-70">創作者</div>
+                                <div class="text-sm font-medium">AI ARTIST</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs opacity-70">返現率</div>
+                                <div class="text-sm font-bold text-green-400">2%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active" data-index="0"></div>
+                    <div class="carousel-indicator" data-index="1"></div>
+                    <div class="carousel-indicator" data-index="2"></div>
+                </div>
+            </div>
+            
             <!-- Key Statistics -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in">
+            <div class="mt-10 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 animate-fade-in">
                 <div class="text-center">
                     <div class="stats-number counter" data-target="480">0</div>
                     <div class="text-gray-400">萬億美元市場</div>
@@ -1148,7 +1409,7 @@
                 </div>
                 
                 <!-- Gold Card -->
-                <div class="card card-tier-gold p-8 animate-slide-up transform scale-105 border-2 border-yellow-400" style="animation-delay: 0.1s;">
+                <div class="card card-tier-gold p-8 animate-slide-up md:transform md:scale-105 border-2 border-yellow-400" style="animation-delay: 0.1s;">
                     <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
                         <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
                             最受歡迎
@@ -1288,7 +1549,7 @@
             <!-- Comparison Table -->
             <div class="mt-16 card p-8 animate-fade-in">
                 <h3 class="text-2xl font-bold mb-8 text-center">詳細權益對比</h3>
-                <div class="overflow-x-auto">
+                <div class="table-container">
                     <table class="w-full text-sm">
                         <thead>
                             <tr class="border-b border-gray-700">
@@ -2206,7 +2467,7 @@
             languageLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const lang = link.getAttribute('data-lang');
+                    const lang = link.getAttribute('data-lang'));
                     const flag = link.querySelector('img').src;
                     const text = link.textContent.trim();
                     
@@ -2230,7 +2491,7 @@
             
             loginOptions.forEach(option => {
                 option.addEventListener('click', () => {
-                    const loginType = option.getAttribute('data-login');
+                    const loginType = option.getAttribute('data-login'));
                     
                     if (loginType === 'metamask' || loginType === 'walletconnect' || loginType === 'coinbase') {
                         alert(`正在連接${loginType.charAt(0).toUpperCase() + loginType.slice(1)}錢包...`);
@@ -2252,6 +2513,36 @@
                             behavior: 'smooth'
                         });
                     }
+                });
+            });
+            
+            // Mobile card carousel
+            const slides = document.querySelectorAll('.card-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            function nextSlide() {
+                let next = currentSlide + 1;
+                if (next >= slides.length) next = 0;
+                showSlide(next);
+            }
+            
+            // Auto rotate slides
+            setInterval(nextSlide, 3000);
+            
+            // Indicator click events
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
                 });
             });
         });
